@@ -4,8 +4,10 @@
 
 @section('content')
 	<div>
-	
-		<a href={{route('createOwnerRoute')}}>Prideti savininką</a>
+		<div class="d-flex flex-column justify-content-center align-items-center mb-5">
+			<a class="btn btn-success" href={{route('createOwnerRoute')}}>Prideti savininką</a>
+		</div>
+		
 		<table class="table">
 		
 			<tr>
@@ -25,13 +27,13 @@
 					<td>{{$owner->email}}</td>
 					<td>{{$owner->address}}</td>
 					
-					<td><a href="{{route('editOwnerRoute', ['owner' => $owner])}}">Atnaujinti informaciją</a></td>
+					<td><a class="btn btn-warning" href="{{route('editOwnerRoute', ['owner' => $owner])}}">Atnaujinti informaciją</a></td>
 					
 					<td>
 						<form method="post" action="{{route('deleteOwnerRoute', ['owner' => $owner])}}">
 							@csrf
 							@method('delete')
-							<input type="submit" value="Ištrinti" />
+							<input class="btn btn-danger" type="submit" value="Ištrinti" />
 						</form>
 					</td>
 
