@@ -12,10 +12,11 @@
 		
 			<tr>
 				<td>ID</td>
-				<td>Numeris</td>
-				<td>Markė</td>
-				<td>Numeris</td>
-				<td>Savininko ID</td>
+				<td>{{Lang::get('messages.Numeris')}}</td>
+				<td>{{Lang::get('messages.Markė')}}</td>
+				<td>{{Lang::get('messages.Modelis')}}</td>
+				
+				<td>{{Lang::get('messages.Savininko ID')}}</td>
 			</tr>
 			@foreach ($cars as $car)
 				<tr>
@@ -27,14 +28,14 @@
 					
 
 					@if (Auth::user()->type < 2)
-					<td><a class="btn btn-warning" href="{{route('editCarRoute', ['car' => $car])}}">[update]</a></td>
+					<td><a class="btn btn-warning" href="{{route('editCarRoute', ['car' => $car])}}">{{Lang::get('messages.Atnaujinti informaciją')}}</a></td>
 					
 					
 					<td>
 						<form method="post" action="{{route('deleteCarRoute', ['car' => $car])}}">
 							@csrf
 							@method('delete')
-							<input class="btn btn-danger" type="submit" value="Ištrinti" />
+							<input class="btn btn-danger" type="submit" value="{{Lang::get('messages.Ištrinti')}}" />
 						</form>
 					</td>
 					@endif

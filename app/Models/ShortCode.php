@@ -12,3 +12,4 @@ class ShortCode extends Model
 		'shortcode',
 	];
 }
+	

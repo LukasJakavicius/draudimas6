@@ -6,21 +6,21 @@
 	<div>
 		<div class="d-flex flex-column justify-content-center align-items-center mb-5">
 			@if (Auth::user()->type < 2)
-				<a class="btn btn-success" href={{route('createOwnerRoute')}}>Prideti savininką</a>
+				<a class="btn btn-success" href={{route('createOwnerRoute')}}>{{Lang::get('messages.Pridėti savininką')}}</a>
 			@endif
-			<a class="btn btn-success mt-2" href={{route('indexCarRoute')}}>Automobilių sąrašas</a>
+			<a class="btn btn-success mt-2" href={{route('indexCarRoute')}}>{{Lang::get('messages.Automobilių sąrašas')}}</a>
 		</div>
 		
 		<table class="table">
 		
 			<tr>
 				<td>ID</td>
-				<td>Vardas</td>
-				<td>Pavardė</td>
-				<td>Tel. nr.</td>
-				<td>El. paštas</td>
-				<td>Adresas</td>
-				<td>Automobiliai</td>
+				<td>{{Lang::get('messages.Vardas')}}</td>
+				<td>{{Lang::get('messages.Pavardė')}}</td>
+				<td>{{Lang::get('messages.Tel. nr.')}}</td>
+				<td>{{Lang::get('messages.El. paštas')}}</td>
+				<td>{{Lang::get('messages.Adresas')}}</td>
+				<td>{{Lang::get('messages.Automobiliai')}}</td>
 			</tr>
 			@foreach ($owners as $owner)
 				<tr>
@@ -40,19 +40,19 @@
 						@endif
 					@endforeach
 					@if (Auth::user()->type < 2)
-						<a href="{{route('createCarRoute', ['owner' => $owner])}}">[addCar]</a>
+						<a href="{{route('createCarRoute', ['owner' => $owner])}}">{{Lang::get('messages.Pridėti naują automobilį')}}</a>
 					@endif
 					</td>
 
 					@if (Auth::user()->type < 2)
-						<td><a class="btn btn-warning" href="{{route('editOwnerRoute', ['owner' => $owner])}}">[update]</a></td>
+						<td><a class="btn btn-warning" href="{{route('editOwnerRoute', ['owner' => $owner])}}">{{Lang::get('messages.Atnaujinti informaciją')}}</a></td>
 						
 						
 						<td>
 							<form method="post" action="{{route('deleteOwnerRoute', ['owner' => $owner])}}">
 								@csrf
 								@method('delete')
-								<input class="btn btn-danger" type="submit" value="Ištrinti" />
+								<input class="btn btn-danger" type="submit" value="{{Lang::get('messages.Ištrinti')}}" />
 							</form>
 						</td>
 					@endif

@@ -6,6 +6,7 @@ use App\Models\Owner;
 use App\Models\Car;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
 
 
 class Draudimas extends Controller
@@ -20,6 +21,12 @@ class Draudimas extends Controller
 		$cars = car::all();
 		return view('draudimas.indexCars', ['owners' => $owners, 'cars' => $cars]);
 	}
+	
+	public function switchLang($lang, Request $request){
+        $request->session()->put('lang', $lang);
+		//dd($request);
+		return redirect()->back();
+    }
 	
 	public function createOwner(){
 		return view('draudimas.draudimasCreate');

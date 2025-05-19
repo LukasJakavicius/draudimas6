@@ -14,7 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
 			'isAdmin' => \App\Http\Middleware\isAdmin::class,
-			'Replace' => \App\Http\Middleware\Replace::class
+			'Replace' => \App\Http\Middleware\Replace::class,
+			'setLanguage' => \App\Http\Middleware\setLanguage::class
 		]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
