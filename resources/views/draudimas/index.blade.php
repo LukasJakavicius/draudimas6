@@ -5,7 +5,9 @@
 @section('content')
 	<div>
 		<div class="d-flex flex-column justify-content-center align-items-center mb-5">
-			<a class="btn btn-success" href={{route('createOwnerRoute')}}>Prideti savininką</a>
+			@if (Auth::user()->type < 2)
+				<a class="btn btn-success" href={{route('createOwnerRoute')}}>Prideti savininką</a>
+			@endif
 			<a class="btn btn-success mt-2" href={{route('indexCarRoute')}}>Automobilių sąrašas</a>
 		</div>
 		
@@ -31,26 +33,29 @@
 					
 					<td>
 					@foreach ($cars as $car)
-					@if ($car->owner_id === $owner->id) 
-					{{$car->reg_number}}
-					{{$car->brand}}
-					{{$car->model}}</br>
-					@endif
+						@if ($car->owner_id === $owner->id) 
+							{{$car->reg_number}}
+							{{$car->brand}}
+							{{$car->model}}</br>
+						@endif
 					@endforeach
-					<a href="{{route('createCarRoute', ['owner' => $owner])}}">Pridėti naują automobilį</a>
+					@if (Auth::user()->type < 2)
+						<a href="{{route('createCarRoute', ['owner' => $owner])}}">[addCar]</a>
+					@endif
 					</td>
 
-					<td><a class="btn btn-warning" href="{{route('editOwnerRoute', ['owner' => $owner])}}">Atnaujinti informaciją</a></td>
-					
-					
-					<td>
-						<form method="post" action="{{route('deleteOwnerRoute', ['owner' => $owner])}}">
-							@csrf
-							@method('delete')
-							<input class="btn btn-danger" type="submit" value="Ištrinti" />
-						</form>
-					</td>
-
+					@if (Auth::user()->type < 2)
+						<td><a class="btn btn-warning" href="{{route('editOwnerRoute', ['owner' => $owner])}}">[update]</a></td>
+						
+						
+						<td>
+							<form method="post" action="{{route('deleteOwnerRoute', ['owner' => $owner])}}">
+								@csrf
+								@method('delete')
+								<input class="btn btn-danger" type="submit" value="Ištrinti" />
+							</form>
+						</td>
+					@endif
 					
 				</tr>
 			@endforeach

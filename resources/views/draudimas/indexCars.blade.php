@@ -26,7 +26,8 @@
 					<td>{{$car->owner_id}}</td>
 					
 
-					<td><a class="btn btn-warning" href="{{route('editCarRoute', ['car' => $car])}}">Atnaujinti informaciją</a></td>
+					@if (Auth::user()->type < 2)
+					<td><a class="btn btn-warning" href="{{route('editCarRoute', ['car' => $car])}}">[update]</a></td>
 					
 					
 					<td>
@@ -36,7 +37,7 @@
 							<input class="btn btn-danger" type="submit" value="Ištrinti" />
 						</form>
 					</td>
-
+					@endif
 					
 				</tr>
 			@endforeach

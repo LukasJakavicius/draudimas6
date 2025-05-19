@@ -32,6 +32,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+	
+	protected $attributes = [
+		'type' => '2'
+	];
 
     /**
      * Get the attributes that should be cast.
