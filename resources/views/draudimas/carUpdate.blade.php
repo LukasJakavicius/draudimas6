@@ -26,7 +26,28 @@
 			<label>{{Lang::get('messages.Savininko ID')}}</label></br>
 			<input type="text" name="owner_id" value="{{$car->owner_id}}" required />
 		</div>
-	
+
 			<br><input class="btn btn-primary" type="submit" value="{{Lang::get('messages.Išsaugoti automobilį')}}" />
 	</form>
+	
+	<form class="mt-5 mb-5" method="post" enctype="multipart/form-data" action="{{route('addCarImage', ['car' => $car])}}">
+	@csrf
+		<div>
+			<label>{{Lang::get('messages.Automobilio nuotraukos')}}</label></br>
+			<input type="file" name="photo" />
+		</div>
+	
+			<br><input class="btn btn-primary" type="submit" value="{{Lang::get('messages.Įkelti nuotrauką')}}" />
+	</form
+	
+	<table class="table">
+		@foreach ($photo as $photos)
+			<tr>
+			@if ($car->id === $photos->car_id)
+				<td><img src="{{asset($photos->image)}}"></td>
+				<td>{{Lang::get('messages.Ištrinti')}}</td>
+			@endif
+			</tr>
+		@endforeach
+	</table>
 </div>

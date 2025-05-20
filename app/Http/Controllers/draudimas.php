@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Owner;
 use App\Models\Car;
+use App\Models\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
@@ -75,7 +76,7 @@ class Draudimas extends Controller
 			Auth::user(),
 			"model"=>"required",
 			"brand"=>"required",
-			"reg_number"=>"required|integer",
+			"reg_number"=>"required|integer"
 		]);
 		$data['owner_id'] = $owner->id;
 		
@@ -88,7 +89,8 @@ class Draudimas extends Controller
 		return redirect(route("indexCarRoute"));		
 	}
 	public function updateCar(car $car){
-		return view('draudimas.carUpdate', ['car' => $car]);
+		$photo = photo::all();
+		return view('draudimas.carUpdate', ['car' => $car, 'photo' => $photo]);
 	}
 	public function updateCarPost(car $car,Request $request){
 		$data = $request->validate([
@@ -100,6 +102,7 @@ class Draudimas extends Controller
 		]);
 	    //dd($request);
 		$owner = owner::all();
+		
 		if(owner::where('id', $data['owner_id'])->exists()){
 			$car->update($data);
 			return redirect(route("indexCarRoute"));
@@ -108,6 +111,28 @@ class Draudimas extends Controller
 			return view('draudimas.carUpdate', ['car' => $car]);
 	
 	}
+
+public function postImg(Request $request, car $car)
+{
+    $request->validate([
+        "photo" => "required|image|mimes:jpeg,png,jpg,gif"
+    ]);
+
+    if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+        $imagePath = $request->file('photo')->storeAs('public/photos', $request->file('photo')->hashName());
+
+        $newPhoto = photo::create([
+            'image' => 'photos/' . $request->file('photo')->hashName(),
+            'car_id' => $car->id
+        ]);
+
+        $newPhoto->save();
+    } else {
+        return redirect(route('indexCarRoute'));
+    }
+
+    return redirect(route('indexCarRoute'));
+}
 
 }
 

@@ -18,5 +18,7 @@ return [
 	"El. paštas" => "El. paštas",
 	"Grįžti" => "Grįžti",
 	"Išsaugoti automobilį" => "Išsaugoti automobilį",
-	"Išsaugoti savininką" => "Išsaugoti savininką"
+	"Išsaugoti savininką" => "Išsaugoti savininką",
+	"Automobilio nuotraukos" => "Automobilio nuotraukos",
+	"Įkelti nuotrauką" => "Įkelti nuotrauką"
 ];

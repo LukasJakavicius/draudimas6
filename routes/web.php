@@ -28,3 +28,4 @@ route::get('/index/{car}/editCar', [Draudimas::class, 'updateCar'])->name('editC
 Route::put('/index/{car}/updateCar', [Draudimas::class, 'updateCarPost'])->name('editCarPost')->middleware('auth')->middleware('isAdmin');
 Route::delete('/index/{car}/deleteCar', [Draudimas::class, 'deleteCar'])->name('deleteCarRoute')->middleware('auth')->middleware('isAdmin');
 
+Route::post('/index/{car}/postImg', [Draudimas::class, 'postImg'])->name('addCarImage')->middleware('auth')->middleware('isAdmin');

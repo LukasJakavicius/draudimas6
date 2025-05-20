@@ -18,6 +18,8 @@ return [
 	"El. paštas" => "Email",
 	"Grįžti" => "Back",
 	"Išsaugoti automobilį" => "Save car",
-	"Išsaugoti savininką" => "Save owner"
+	"Išsaugoti savininką" => "Save owner",
+	"Automobilio nuotraukos" => "Car pictures",
+	"Įkelti nuotrauką" => "Upload picture"
 
 ];
