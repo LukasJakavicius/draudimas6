@@ -45,7 +45,13 @@
 			<tr>
 			@if ($car->id === $photos->car_id)
 				<td><img src="{{asset($photos->image)}}"></td>
-				<td>{{Lang::get('messages.Ištrinti')}}</td>
+				<td><form method="POST" action="{{ route('deleteImgRoute', ['car' => $car->id, 'photo' => $photos->id]) }}">
+                @csrf
+                @method('DELETE')
+                <input class="btn btn-danger" type="submit" value="{{ Lang::get('messages.Ištrinti') }}" />
+            </form>
+        </td>
+				</td>
 			@endif
 			</tr>
 		@endforeach

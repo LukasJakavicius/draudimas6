@@ -29,3 +29,4 @@ Route::put('/index/{car}/updateCar', [Draudimas::class, 'updateCarPost'])->name(
 Route::delete('/index/{car}/deleteCar', [Draudimas::class, 'deleteCar'])->name('deleteCarRoute')->middleware('auth')->middleware('isAdmin');
 
 Route::post('/index/{car}/postImg', [Draudimas::class, 'postImg'])->name('addCarImage')->middleware('auth')->middleware('isAdmin');
+Route::delete('/index/{car}/{photo}/deleteImg', [Draudimas::class, 'deleteImg'])->name('deleteImgRoute')->middleware('auth')->middleware('isAdmin');

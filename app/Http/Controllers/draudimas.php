@@ -134,6 +134,10 @@ public function postImg(Request $request, car $car)
     return redirect(route('indexCarRoute'));
 }
 
+public function deleteImg(car $car, photo $photo)
+{
+    $photo->delete();  
+    return redirect(route('indexCarRoute'));
 }
-
+}
 ?>
